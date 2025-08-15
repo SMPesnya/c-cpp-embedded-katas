@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слон №1 — C/C++ + Embedded: дорожная карта (с материалами)</title>
+<style>
+  :root{
+    --fg:#111; --bg:#fff; --muted:#555;
+    --grid:#ddd; --head:#eee; --accent:#000;
+    --fs:15px; --fs-small:13px;
+  }
+  @page { size: A4; margin: 12mm; }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:var(--fs)/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","DejaVu Sans",Arial,sans-serif;}
+  main{max-width:1200px;margin:0 auto;padding:16px;}
+  h1{font-size:22px;margin:0 0 8px 0;text-align:center;}
+  h2{font-size:18px;margin:16px 0 6px 0;}
+  h3{font-size:16px;margin:12px 0 4px 0;}
+  p{margin:6px 0;}
+  table{width:100%;border-collapse:collapse;margin:10px 0 18px 0;}
+  th,td{border:1px solid var(--grid);padding:8px;vertical-align:top;font-size:var(--fs-small);}
+  thead th{background:var(--head);}
+  ul{margin:6px 0 6px 18px;}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px dotted #aaa;}
+  a:hover{border-bottom-color:transparent;}
+  .print-note{font-size:12px;color:var(--muted);text-align:center;margin-top:6px;}
+  @media print{
+    main{padding:0;}
+    .print-note{display:none;}
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>🐘 Слон №1 — C/C++ + Embedded: дорожная карта на 6 месяцев (с материалами)</h1>
+  <p class="print-note">Под печать A4. Все ссылки ведут на официальную документацию и нейтральные ресурсы.</p>
+
+  <h2>Помесячно с разбивкой по неделям</h2>
+
+  <h3>Месяц 1 — C: база</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Шилдт: типы, операторы, ветвления, циклы, функции</td>
+        <td>Консольный калькулятор; разбор ввода; модульные функции</td>
+        <td>Бинарь, README, тест‑кейсы</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/c/language">C language @ cppreference</a></li>
+            <li><a href="https://www.gnu.org/software/make/manual/">GNU Make Manual</a></li>
+            <li><a href="https://gcc.gnu.org/onlinedocs/">GCC docs</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Массивы, строки, <b>указатели 1</b></td>
+        <td>Парсер CSV → структуры; функции работы со строками</td>
+        <td>Библиотека utils.c/.h</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/c/string/byte">C strings</a></li>
+            <li><a href="https://www.cprogramming.com/tutorial/c/lesson6.html">Pointers (guide)</a></li>
+            <li><a href="https://sourceware.org/gdb/current/onlinedocs/gdb/">GDB Manual</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><b>указатели 2</b>, структуры, динамическая память</td>
+        <td>Список/динамический массив; свой strdup/trim</td>
+        <td>Модуль DS (list/vector)</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/c/memory">Dynamic memory</a></li>
+            <li><a href="https://valgrind.org/docs/manual/valgrind_manual.html">Valgrind Manual</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Файлы, двоичный ввод/вывод, модули</td>
+        <td>Мини‑логгер (rotate, уровни) → файл</td>
+        <td>liblogger.a + демо</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/c/io">C I/O</a></li>
+            <li><a href="https://cmake.org/cmake/help/latest/">CMake docs</a></li>
+            <li><a href="https://github.com/google/googletest">GoogleTest</a> / <a href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">CTest</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Месяц 2 — C: закрепление + алгоритмы</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Битовые операции, enum/bit‑fields</td>
+        <td>INI/CFG‑парсер с флагами; побитовые маски</td>
+        <td>libcfg.a + примеры</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/c/language/bit_field">Bit‑fields</a></li>
+            <li><a href="https://pubs.opengroup.org/onlinepubs/9699919799/">POSIX Base Specs</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Время, таймеры, простые протоколы</td>
+        <td>Парсер простого бинарного протокола</td>
+        <td>libproto.a</td>
+        <td>
+          <ul>
+            <li><a href="https://man7.org/linux/man-pages/man2/time.2.html">time(2)</a>, <a href="https://man7.org/linux/man-pages/man2/timer_create.2.html">timer_create(2)</a></li>
+            <li><a href="https://perf.wiki.kernel.org/index.php/Tutorial">perf tutorial</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><b>Грокаем алгоритмы:</b> Big‑O, бинарный поиск, рекурсия, быстрая сортировка, хеш‑таблицы</td>
+        <td>binary_search, quick_sort, простая hash table + бенчи</td>
+        <td>Алгоритмический playground</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/cpp/algorithm">C++ STL algorithms</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Big_O_notation">Big‑O (overview)</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Седжвик: сортировки, поиск. Структуры данных</td>
+        <td>Реализации + тесты и бенчи</td>
+        <td>Библиотека алгоритмов/структур</td>
+        <td>
+          <ul>
+            <li><a href="https://quick-bench.com/">Quick Bench</a></li>
+            <li><a href="https://github.com/google/benchmark">google/benchmark</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Месяц 3 — современный C++</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>9</td>
+        <td>ООП, RAII, std::string, std::vector, auto, range‑for</td>
+        <td>Перенос utils на C++ (классы, RAII)</td>
+        <td>libcore.a (C++)</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/cpp/language/raii">RAII</a></li>
+            <li><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Умные указатели, исключения, std::optional</td>
+        <td>Конфиг‑система с RAII + парсер</td>
+        <td>libcfg++ + тесты</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">unique_ptr</a>, <a href="https://en.cppreference.com/w/cpp/memory/shared_ptr">shared_ptr</a></li>
+            <li><a href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Шаблоны, итераторы, алгоритмы STL</td>
+        <td>Generic контейнер/алгоритм; фильтры/трансформы</td>
+        <td>bench + отчёт</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/cpp/algorithm">STL algorithms</a></li>
+            <li><a href="https://en.cppreference.com/w/cpp/iterator">Iterators</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Файлы, потоки, сериализация</td>
+        <td>Формат конфигов (JSON/TOML) + CLI утилита</td>
+        <td>release v0.2</td>
+        <td>
+          <ul>
+            <li><a href="https://en.cppreference.com/w/cpp/filesystem">std::filesystem</a></li>
+            <li><a href="https://github.com/nlohmann/json">nlohmann/json</a> / <a href="https://toml.io/en/">TOML</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Месяц 4 — Linux и системное</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>13</td>
+        <td>Файлы/каталоги, права, epoll/inotify (обзор)</td>
+        <td>Файловый монитор + ротация логов</td>
+        <td>daemon‑утилита</td>
+        <td>
+          <ul>
+            <li><a href="https://man7.org/linux/man-pages/man7/inotify.7.html">inotify(7)</a>, <a href="https://man7.org/linux/man-pages/man7/epoll.7.html">epoll(7)</a></li>
+            <li><a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd service</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Процессы и потоки, fork/exec/pthread</td>
+        <td>Мини‑пул потоков; конвейер процессов</td>
+        <td>libthreads.a</td>
+        <td>
+          <ul>
+            <li><a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork(2)</a>, <a href="https://man7.org/linux/man-pages/man3/pthreads.3.html">pthreads(3)</a></li>
+            <li><a href="https://sourceware.org/gdb/">GDB</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>Сокеты TCP/UDP</td>
+        <td>Чат‑сервер + клиент</td>
+        <td>demo + README</td>
+        <td>
+          <ul>
+            <li><a href="https://man7.org/linux/man-pages/man7/socket.7.html">socket(7)</a>, <a href="https://man7.org/linux/man-pages/man2/connect.2.html">connect(2)</a></li>
+            <li><a href="https://www.tcpdump.org/manpages/tcpdump.1.html">tcpdump</a>, <a href="https://strace.io/">strace</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>Сборка: CMake presets, пакеты</td>
+        <td>Сборка всего набора как монорепо</td>
+        <td>v0.3</td>
+        <td>
+          <ul>
+            <li><a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">CMake Presets</a></li>
+            <li><a href="https://cmake.org/cmake/help/latest/module/CPack.html">CPack</a></li>
+            <li><a href="https://docs.github.com/en/actions">GitHub Actions</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Месяц 5 — Embedded (MCU)</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>17</td>
+        <td>Arduino‑разгон (Блум/Иго/Бокселл) — выборочно</td>
+        <td>3 мини‑проекта: кнопка+buzzer; датчик+OLED; UART/BLE</td>
+        <td>скетчи и видео‑демо</td>
+        <td>
+          <ul>
+            <li><a href="https://docs.arduino.cc/">Arduino Docs</a></li>
+            <li><a href="https://www.arduino.cc/reference/en/">Arduino Language Reference</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>Архитектура ARM Cortex‑M (Yiu): память, регистры, NVIC</td>
+        <td>STM32/ESP32: GPIO через регистры (без HAL)</td>
+        <td>bare‑metal blink</td>
+        <td>
+          <ul>
+            <li><a href="https://developer.arm.com/documentation/">ARM Developer Docs</a></li>
+            <li><a href="https://www.st.com/en/embedded-software/stm32cube-mcu-packages.html">STM32Cube</a> / <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/">ESP‑IDF</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>Таймеры, прерывания, тактирование</td>
+        <td>Таймер‑ISR; debounce кнопки</td>
+        <td>пример с ISR</td>
+        <td>
+          <ul>
+            <li><a href="https://www.st.com/resource/en/reference_manual/">STM32 Reference Manuals</a></li>
+            <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/">ESP‑IDF API Reference</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>UART/I2C/SPI (LL/HAL, затем регистры)</td>
+        <td>Драйвер датчика (I2C) + лог в UART</td>
+        <td>libsensor.a</td>
+        <td>
+          <ul>
+            <li><a href="https://www.st.com/en/embedded-software/stm32cube-embedded-software.html">STM32 HAL/LL</a></li>
+            <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/index.html">ESP‑IDF Peripherals</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Месяц 6 — FreeRTOS и итоговый проект</h3>
+  <table>
+    <thead><tr><th>Неделя</th><th>Теория</th><th>Практика</th><th>Результат</th><th>Материалы/ссылки</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>21</td>
+        <td>FreeRTOS: задачи, очереди, семафоры</td>
+        <td>2 задачи: чтение датчика + передача по UART</td>
+        <td>демо с потоками</td>
+        <td>
+          <ul>
+            <li><a href="https://www.freertos.org/Documentation/RTOS_book.html">FreeRTOS Docs</a></li>
+            <li><a href="https://www.freertos.org/Inter-Task-Communication.html">Inter‑task Communication</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>Таймеры FreeRTOS, обработка событий</td>
+        <td>Буферизация данных, watchdog</td>
+        <td>стабильный цикл</td>
+        <td>
+          <ul>
+            <li><a href="https://www.freertos.org/RTOS-software-timer.html">FreeRTOS Timers</a></li>
+            <li><a href="https://www.freertos.org/Real-time-embedded-RTOS-mutexes.html">Mutexes & Semaphores</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>Интеграция модулей, логирование, ошибки</td>
+        <td>Сборка конечного устройства (датчик → UART/Wi‑Fi → SD)</td>
+        <td>MVP</td>
+        <td>
+          <ul>
+            <li><a href="https://www.sqlite.org/tempfiles.html">Лог/файл‑буфер (концепции)</a></li>
+            <li><a href="https://git-scm.com/docs">Git docs</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>Резерв: полировка, тесты, релиз</td>
+        <td>Оптимизация, профили, финальный рефакторинг</td>
+        <td>v1.0, repo на GitHub</td>
+        <td>
+          <ul>
+            <li><a href="https://llvm.org/docs/CommandGuide/llvm-profdata.html">Профили (LLVM)</a></li>
+            <li><a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">Git tagging</a></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Микро‑спринты из «Грокаем алгоритмы»</h2>
+  <ul>
+    <li>BFS, Dijkstra — между неделями 7–12 (по 30–40 мин): <a href="https://en.wikipedia.org/wiki/Breadth-first_search">BFS</a>, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra</a></li>
+    <li>Жадные и ДП — в конце месяца 2 или 3: <a href="https://en.wikipedia.org/wiki/Knapsack_problem">0/1 Knapsack</a></li>
+  </ul>
+</main>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Задачи по Главе 1 — C/C++ с Embedded-контекстом</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    h1, h2, h3 { color: #333; }
+    pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    code { background-color: #f0f0f0; padding: 2px 4px; border-radius: 3px; }
+    .task { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+    .why { background: #eef7ff; padding: 10px; border-left: 3px solid #339; margin-top: 10px; }
+</style>
+</head>
+<body>
+<h1>Задачи для Главы 1 (с Embedded-контекстом)</h1>
+<p>Этот набор задач рассчитан на повторение C и C++ с прицелом на микроконтроллеры и встраиваемые системы. Они дополняют первую главу книги Шилдта и помогут сразу применить теорию на практике.</p>
+
+<div class="task">
+<h2>1. Минимальный UART-printf</h2>
+<p><strong>Ситуация:</strong> MCU не имеет <code>stdio.h</code>, но есть низкоуровневая функция для отправки одного символа:</p>
+<pre><code>void uart_send_char(char c);</code></pre>
+<p><strong>Задача:</strong></p>
+<ul>
+    <li>Реализовать <code>void uart_printf(const char *fmt, ...);</code></li>
+    <li>Использовать <code>va_list</code>, <code>va_start</code> и <code>va_end</code>.</li>
+    <li>Поддержать хотя бы <code>%s</code> и <code>%d</code>.</li>
+</ul>
+<pre><code>uart_printf("Value = %d\n", 42);</code></pre>
+<div class="why"><strong>Зачем:</strong> Позволяет выводить отладочные сообщения через UART без тяжёлых библиотек.</div>
+</div>
+
+<div class="task">
+<h2>2. Чтение регистра периферии</h2>
+<p><strong>Ситуация:</strong> Нужно узнать состояние входов порта GPIO.</p>
+<p><strong>Задача:</strong></p>
+<ul>
+    <li>Объявить указатель на регистр:</li>
+</ul>
+<pre><code>volatile uint32_t *const GPIO_PORT = (uint32_t *)0x50000000;</code></pre>
+<ul>
+    <li>Считать значение и вывести его побитово через <code>uart_printf</code>.</li>
+</ul>
+<div class="why"><strong>Зачем:</strong> Навык работы с памятью MCU напрямую — основа написания драйверов.</div>
+</div>
+
+<div class="task">
+<h2>3. Таблица ASCII</h2>
+<p><strong>Ситуация:</strong> Нужно быстро проверить, какие символы приходят по UART.</p>
+<p><strong>Задача:</strong></p>
+<ul>
+    <li>Вывести символы с кодами от 0 до 127.</li>
+    <li>Для непечатаемых символов &lt; 32 и 127 выводить <code>.</code> или управляющее имя (&lt;NUL&gt;, &lt;ESC&gt;).</li>
+</ul>
+<div class="why"><strong>Зачем:</strong> Полезно при отладке протоколов и анализе «мусорных» байт.</div>
+</div>
+
+<div class="task">
+<h2>4. Статический кольцевой буфер для UART RX</h2>
+<p><strong>Ситуация:</strong> Данные приходят асинхронно, динамическая память запрещена.</p>
+<p><strong>Задача:</strong></p>
+<ul>
+    <li>Создать <code>char buffer[64];</code>, индексы <code>head</code> и <code>tail</code>.</li>
+    <li>Написать <code>push(char c)</code> и <code>pop(void)</code>.</li>
+    <li>Продумать стратегию при переполнении.</li>
+</ul>
+<div class="why"><strong>Зачем:</strong> Основа организации приёма данных в реальном времени на MCU.</div>
+</div>
+
+<div class="task">
+<h2>5. Минимальный Makefile для MCU</h2>
+<p><strong>Ситуация:</strong> Сборка проекта без IDE под ARM Cortex-M.</p>
+<p><strong>Задача:</strong></p>
+<ul>
+    <li>Создать цели <code>all</code>, <code>flash</code>, <code>clean</code>.</li>
+    <li>Использовать <code>arm-none-eabi-gcc</code> и <code>st-flash write</code>.</li>
+</ul>
+<pre><code>arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O2 -T stm32.ld main.c -o main.elf</code></pre>
+<div class="why"><strong>Зачем:</strong> Позволяет собирать прошивку в CI/CD или на любом ПК без установки IDE.</div>
+</div>
+
+</body>
+</html>

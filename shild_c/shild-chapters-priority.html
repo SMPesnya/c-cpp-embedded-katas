@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шилдт — 29 глав: приоритеты для Embedded</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --card: #121833;
+    --muted: #aab2d5;
+    --fg: #e8ecff;
+    --ok: #27ae60;
+    --later: #f2c037;
+    --skip: #e74c3c;
+    --line: #2b3566;
+  }
+  html,body { margin:0; padding:0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif; }
+  .wrap { max-width: 1100px; margin: 40px auto; padding: 0 16px; }
+  h1 { margin: 0 0 6px; font-size: 28px; }
+  p.lead { margin: 0 0 18px; color: var(--muted); }
+  .legend { display:flex; gap:12px; flex-wrap:wrap; margin: 10px 0 20px; }
+  .badge { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius: 999px; font-size: 13px; border:1px solid var(--line); background: #0f1738; cursor:pointer; user-select:none; }
+  .b-now { border-color: rgba(39,174,96,.5); }
+  .b-later { border-color: rgba(242,192,55,.5); }
+  .b-skip { border-color: rgba(231,76,60,.5); }
+  .b-all { border-color: rgba(255,255,255,.3); }
+  .badge.active { box-shadow: 0 0 0 2px rgba(255,255,255,.08) inset; }
+  table { width:100%; border-collapse: collapse; background: var(--card); border:1px solid var(--line); }
+  th, td { padding: 10px 12px; border-bottom:1px solid var(--line); vertical-align: top; }
+  th { text-align:left; color:#cfd6ff; background: #162051; position: sticky; top: 0; z-index: 1; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .num { width: 54px; color:#b9c3ff; }
+  .status { width: 140px; }
+  .label { display:inline-flex; align-items:center; gap:8px; padding:4px 10px; border-radius:8px; font-weight:600; font-size: 13px; }
+  .now   { background: rgba(39,174,96,.15); color:#bff4d5; }
+  .later { background: rgba(242,192,55,.18); color:#ffe29a; }
+  .skip  { background: rgba(231,76,60,.15); color:#ffb5ad; }
+  .why { color: #e3e7ff; }
+  .dim { color: var(--muted); font-size: 13px; }
+  .foot { margin-top: 14px; color: var(--muted); }
+  .controls { display:flex; gap:10px; flex-wrap:wrap; margin: 8px 0 18px; }
+  .srch { flex: 1 1 260px; max-width: 420px; display:flex; align-items:center; gap:8px; }
+  .srch input { width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--line); background:#0f1738; color:var(--fg); }
+  .count { color: var(--muted); font-size: 13px; margin-left: auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Шилдт — 29 глав: приоритеты для Embedded</h1>
+    <p class="lead">Г. Шилдт — «C»: план чтения по главам для C/C++ Embedded. Метки: <span>📌 Сейчас</span>, <span>⏳ Позже</span>, <span>🚫 Пропустить</span></p>
+
+    <div class="controls">
+      <div class="legend">
+        <span class="badge b-all active" data-filter="all">Показать все</span>
+        <span class="badge b-now"  data-filter="now">📌 Сейчас</span>
+        <span class="badge b-later" data-filter="later">⏳ Позже</span>
+        <span class="badge b-skip" data-filter="skip">🚫 Пропустить</span>
+      </div>
+      <div class="srch">
+        <input id="searchBox" type="search" placeholder="Поиск по названию/почему…">
+      </div>
+      <div class="count"><span id="visibleCount">29</span> / 29</div>
+    </div>
+
+    <table id="chapters">
+      <thead>
+        <tr>
+          <th class="num">№</th>
+          <th>Глава</th>
+          <th class="status">Метка</th>
+          <th>Почему</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows -->
+      </tbody>
+    </table>
+
+    <p class="foot">Примечание: метки «⏳ Позже» не запрещают чтение — это приоритизация. Если время позволяет, можно читать параллельно, но фокус держать на строках «📌 Сейчас».</p>
+  </div>
+
+<script>
+const data = [
+  {n:1,  title:"Основы языка C (обзор, терминология)", tag:"now",   why:"Разогрев, освежить базис и терминологию."},
+  {n:2,  title:"Выражения (типы, области видимости, операции)", tag:"now",   why:"Типы/операции/приоритет — база для MCU."},
+  {n:3,  title:"Операторы (if/switch/циклы/return/break/…)", tag:"now",   why:"Управляющие конструкции."},
+  {n:4,  title:"Массивы и строки", tag:"now",   why:"Буферы, протоколы, работа с данными."},
+  {n:5,  title:"Указатели (в т.ч. массивы/многомерные/арифметика)", tag:"now",   why:"Ключевая тема для регистров/памяти."},
+  {n:6,  title:"Функции (прототипы, рекурсия, inline, аргументы)", tag:"now",   why:"API модулей прошивки."},
+  {n:7,  title:"Структуры, объединения, перечисления, typedef", tag:"now",   why:"Отражение регистров, пакеты протоколов."},
+  {n:8,  title:"Ввод/вывод на консоль (printf/scanf и т.п.)", tag:"now",   why:"Для отладки через UART/semihosting. *читать выборочно: printf/scanf‑минимум."},
+  {n:9,  title:"Файловый ввод/вывод, потоки, файловая система", tag:"later", why:"На MCU редко; полезно для хост‑утилит/FAT."},
+  {n:10, title:"Препроцессор и комментарии", tag:"now",   why:"Конфиги билда, условная компиляция, assert."},
+  {n:11, title:"Стандарт C99: отличия и новшества", tag:"later", why:"Осмыслить после базы; не всё доступно на MCU."},
+  {n:12, title:"Редактирование связей, библиотеки и заголовки", tag:"later", why:"Полезно для сборки под ПК/кросс‑компиляции."},
+  {n:13, title:"Функции ввода/вывода (std I/O каталогом)", tag:"later", why:"Как справочник; на MCU урезанные реализации."},
+  {n:14, title:"Строковые и символьные функции", tag:"now",   why:"Парсинг/протоколы/обработка буферов."},
+  {n:15, title:"Математические функции (math.h)", tag:"later", why:"Выборочно: необходимо лишь по задачам (float, trig)."},
+  {n:16, title:"Время, дата и локализация", tag:"skip",  why:"Часто отсутствует на MCU; работать с RTC отдельно."},
+  {n:17, title:"Динамическая память (malloc/calloc/realloc/free)", tag:"later", why:"Знать стоит, но в прошивках часто избегают."},
+  {n:18, title:"Служебные функции (assert, atof/atoi и др.)", tag:"later", why:"Справочник; берём точечно."},
+  {n:19, title:"Двухбайтовые символы (wide char)", tag:"skip",  why:"Редко нужно в прошивках."},
+  {n:20, title:"Библиотечные средства, добавленные в C99", tag:"later", why:"Полезно знать, но не критично на старте MCU."},
+  {n:21, title:"Сортировка и поиск", tag:"now",   why:"Алгоритмическая база; qsort/bsearch и свои реализации."},
+  {n:22, title:"Очереди, стеки, связанные списки и деревья", tag:"now",   why:"Буферы, очереди событий, структуры RTOS."},
+  {n:23, title:"Разреженные массивы", tag:"later", why:"Узкоспециализировано; редко на MCU."},
+  {n:24, title:"Синтаксический разбор и вычисление выражений", tag:"skip",  why:"Нужно для парсеров/языков; не стартовая цель."},
+  {n:25, title:"Решение задач с помощью искусственного интеллекта", tag:"later", why:"Классический AI (поиски/графы). Полезно как база, но не ML."},
+  {n:26, title:"Скелет приложения для Windows 2000 (Win32 API)", tag:"skip",  why:"Не относится к MCU."},
+  {n:27, title:"Проектирование программ с помощью C", tag:"later", why:"Идеи годные, но примеры под ПК."},
+  {n:28, title:"Производительность, переносимость и отладка", tag:"now",   why:"Про прошивки: тайминг, размер, портабельность."},
+  {n:29, title:"Интерпретатор языка C (Little C)", tag:"skip",  why:"Учебный проект; не даёт MCU‑пользы на старте."}
+];
+
+const tbody = document.querySelector("#chapters tbody");
+function renderRows() {
+  tbody.innerHTML = "";
+  for (const row of data) {
+    const tr = document.createElement("tr");
+    tr.dataset.tag = row.tag;
+    tr.innerHTML = `
+      <td class="num">${row.n}</td>
+      <td>${row.title}</td>
+      <td class="status">
+        <span class="label ${row.tag}">
+          ${row.tag==="now"?"📌 Сейчас":row.tag==="later"?"⏳ Позже":"🚫 Пропустить"}
+        </span>
+      </td>
+      <td class="why">${row.why}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+renderRows();
+
+const badges = document.querySelectorAll(".badge");
+let activeFilter = "all";
+function applyFilter() {
+  const q = document.getElementById("searchBox").value.trim().toLowerCase();
+  let visible = 0;
+  for (const tr of tbody.querySelectorAll("tr")) {
+    const tag = tr.dataset.tag;
+    const text = tr.textContent.toLowerCase();
+    const tagOk = (activeFilter === "all") || (tag === activeFilter);
+    const searchOk = !q || text.includes(q);
+    const show = tagOk && searchOk;
+    tr.style.display = show ? "" : "none";
+    if (show) visible++;
+  }
+  document.getElementById("visibleCount").textContent = visible;
+}
+badges.forEach(b=>b.addEventListener("click", () => {
+  badges.forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  activeFilter = b.dataset.filter;
+  applyFilter();
+}));
+document.getElementById("searchBox").addEventListener("input", applyFilter);
+applyFilter();
+</script>
+</body>
+</html>

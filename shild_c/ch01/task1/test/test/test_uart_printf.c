@@ -6,3 +6,4 @@ void test_uart_printf_compiles(void)
 {
     (void)uart_printf("Value = %d\n",42);
 }
+

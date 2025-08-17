@@ -14,6 +14,22 @@
 └── shild_c   # изучение книги "C класическое издание Г.Шилд" с уклоном в Embedded и экртимального программирования по Куте Беку
 ```
 
+# 📚 Документация по проекту
+
+> Основные материалы и обучающие ресурсы:
+
+.  
+├── 📄 [LICENSE](https://smpesnya.github.io/c-cpp-embedded-katas/LICENSE)  
+├── 📄 [README](https://smpesnya.github.io/c-cpp-embedded-katas/README.md)  
+├── 📂 roadmaps  
+│   ├── 📄 [Дорожная карта по embedded (вариант 1)](https://smpesnya.github.io/c-cpp-embedded-katas/roadmaps/slon_c_cpp_embedded_roadmap.html)  
+│   ├── 📄 [Дорожная карта по embedded (вариант 2)](https://smpesnya.github.io/c-cpp-embedded-katas/roadmaps/slon_c_cpp_embedded_roadmap_links.html)  
+│   └── 📄 [Дорожная карта по embedded (вариант 3)](https://smpesnya.github.io/c-cpp-embedded-katas/roadmaps/slon_c_cpp_embedded_roadmap_with_grok.html)  
+└── 📂 shild_c  
+    ├── 📂 ch01  
+    │   ├── 📂 task1  
+    │   └── 📄 [Задания дла главы №1](https://smpesnya.github.io/c-cpp-embedded-katas/shild_c/ch01/tasks.html)  
+    └── 📄 [Как лучше читать главы](https://smpesnya.github.io/c-cpp-embedded-katas/shild_c/shild-chapters-priority.html)  
 
 # Ветвление в репозитории
 
